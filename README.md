@@ -18,24 +18,24 @@ Prerequisite
 
 
 ## Installation
-
+```bash
 git clone https://github.com/dzabala-code/velo-kafka-pipeline.git
 cd velo-kafka-pipeline
 pip install -r requirements.txt
 export JCDECAUX_API_KEY='your api'
-
+```
 Start Kafka
-
+```bash
 KAFKA_CLUSTER_ID="$(bin/kafka-storage.sh random-uuid)"
 bin/kafka-storage.sh format --standalone -t "$KAFKA_CLUSTER_ID" -c config/server.properties
 bin/kafka-server-start.sh config/server.properties
-
+```
 Create topics in another terminal 
-
-for t in velib-stations stations-status empty-stations do
+```bash
+for t in velib-stations stations-status empty-stations; do
     bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic $t
 done
-
+```
 ## Run the pipeline
 
 Each script on his own terminal
