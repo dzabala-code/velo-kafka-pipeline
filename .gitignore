@@ -1,2 +1,4 @@
 /kafka_2.13-4.3.1
-/archive-velib.json
+archive-velib.*
+.DS_Store
+__pycache__/

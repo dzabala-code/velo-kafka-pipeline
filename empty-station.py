@@ -17,13 +17,13 @@ for message in consumer:
     station = json.loads(texte)
     bikes_now=station['station']['available_bikes']
 
-    id_station=station['name']
+    id_station=station['station']['name']
     station_target=prior_history.get(id_station)
 
     if id_station in prior_history:
 
         if (bikes_now!=0) and (station_target==0):
-            message = json.dumps({"station":station,"status":'available'})
+            message = json.dumps({**station['station'],"status":'available'})
             producer.send(topic_empty, message)
 
         if (bikes_now==0) and (station_target!=0):
